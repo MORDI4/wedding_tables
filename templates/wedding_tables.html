@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista stołów weselnych</title>
+    <style>
+        table, th, tr, td {
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Lista stołów</h1>
+    <table>
+        <th>Numer stolika</th>
+        <th>Goście</th>
+        {% for table in tables %}
+        <tr>
+            <td><a href="/tables/{{ loop.index }}">{{ table.table_num }}</a></td>
+            <td>{{ table.guests }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+    <h2> Dodaj nowy stolik: </h2>
+    <form method="post" action="/tables/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <tr>
+                    <td>{{ field.label }} {% if field.flags.required %}*{% endif %}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Dodaj">
+    </form>
+    </div>
+
+
+</body>
+</html>
