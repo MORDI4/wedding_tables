@@ -20,7 +20,7 @@ def tables_list():
 
 @app.route('/tables/<int:table_num>', methods=['GET', 'POST'])
 def table_details(table_num):
-    table = table.get(table_num-1)
+    table = tables.get(table_num-1)
     form = TableForm(data=table)
 
     if request.method == 'POST':

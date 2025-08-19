@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Zmień: </h1>
+    <form action="/tables/{{ table_num }}" method="post">
     {{ form.hidden_tag() }}
     <table>
         {% for field in form if field.widget.input_type != 'hidden' %}
@@ -16,5 +17,6 @@
         {% endfor %}
     </table>
     <input type="submit" value="Zmień">
+    </form>
 </body>
 </html>
